@@ -4,6 +4,7 @@
 
 """a file for deployment automatically"""
 import getopt
+import glob
 import os
 import re
 
@@ -65,9 +66,15 @@ def modify_start_script_project_name(project_name, method):
 
 def main(argv):
 
-    project_name = 'web_frame_flask'
-    
     root_dir = str(cur_file_dir())
+
+    zips = glob.glob(root_dir + '/*.zip')
+    if len(zips) < 1:
+        print 'no application zip package for install!'
+        sys.exit(1)
+
+    strs = zips[0].split(os.sep)
+    project_name = strs[len(strs) - 1].split('.')[0]
 
     # upStart, autoStart
     methods = ['upStart', 'autoStart']
