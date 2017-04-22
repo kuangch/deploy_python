@@ -43,6 +43,9 @@ def main(argv):
     
     print 'install zip...'
     os.system('apt-get install zip -y')
+
+    print 'install pip...'
+    os.system('apt-get install python-pip -y')
     
     print 'remove offline package...'
     os.system('rm -r /offlinePackage')
