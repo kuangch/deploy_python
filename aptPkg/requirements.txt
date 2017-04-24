@@ -1,0 +1,9 @@
+# used for unzip project zip package
+zip
+
+# MySQL-python need
+python-dev
+libmysqld-dev
+
+python-pip
+
