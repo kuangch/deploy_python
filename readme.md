@@ -29,7 +29,7 @@ root@ubuntu:~/deploy_python# nohup: redirecting stderr to stdout
 
 由于部分linux版本不支持upstart方式的启动脚本。
 执行部署脚本命令时可以传递 ```--method``` 参数用于选择生成启动脚本的方式
-有两种模式（默认是 upStart）：
+有两种模式（默认是 autoStart）：
 `upStart`：启动脚本将会生成到 /etc/init/xxx.conf
 服务控制：
 ```bash

@@ -78,7 +78,7 @@ def main(argv):
 
     # upStart, autoStart
     methods = ['upStart', 'autoStart']
-    method = methods[0]
+    method = methods[1]
 
     try:
         opts, args = getopt.getopt(argv[1:], 'h:', ['method='])
@@ -102,11 +102,13 @@ def main(argv):
 
     print '#################### install dependency of linux ####################'
     os.chdir(root_dir +'/aptPkg')
+    os.system('chmod 777 apt_install.py')
     os.system('python apt_install.py')
 
 
     print '#################### install dependency of python ####################'
     os.chdir(root_dir +'/pyPkg')
+    os.system('chmod 777 installpkg.sh')
     os.system('./installpkg.sh')
     
     print '#################### config start script ####################'
@@ -117,6 +119,9 @@ def main(argv):
         os.system('mv start_script.conf ' + project_name + '.conf')
         modify_start_script_project_name(project_name, method)
         os.system('cp ' + project_name + '.conf /etc/init/')
+
+        # restore start script
+        os.system('mv ' + project_name + '.conf  start_script.conf')
     else:
         # autoStart
         os.system('mv start_script ' + project_name)
@@ -124,6 +129,9 @@ def main(argv):
         os.system('cp ' + project_name + ' /etc/init.d/')
         os.system('sudo chmod 777 /etc/init.d/' + project_name)
         os.system('update-rc.d ' + project_name + ' defaults 99')
+
+        # restore start script
+        os.system('mv ' + project_name + ' start_script')
 
     print '#################### install & start application ####################'
     os.system('unzip -o ' + project_name + '.zip -d /var/')
