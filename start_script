@@ -13,7 +13,8 @@ project_name='web_frame_flask'
 
 start(){
     chdir /var/$project_name
-    nohup python main.pyc >/var/log/${project_name}.log & echo $!>/var/run/${project_name}.pid & 2>1 &
+    # nohup python main.pyc >/var/log/${project_name}.log 2>$1 & echo $!>/var/run/${project_name}.pid &
+	nohup python main.pyc >/dev/null 2>$1 & echo $!>/var/run/${project_name}.pid &
 }
 
 
